@@ -1,11 +1,10 @@
 "use client";
-import { useAtom } from "jotai";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import type { KeyboardEventHandler } from "react";
 import { useMemo, useState } from "react";
 import { cn } from "twl";
-import { globalDataAtom } from "~/atoms/globalData";
+import { useGlobalData } from "~/atoms/hooks/useGlobalData";
 import {
   MaterialSymbolsChevronLeft,
   MaterialSymbolsChevronRightRounded,
@@ -26,13 +25,12 @@ function isEqualWord(a: string, b: string) {
 export default function Course() {
   const searchParams = useSearchParams();
   const name = searchParams.get("name");
-  const [globalData] = useAtom(globalDataAtom);
+  const { globalData, doneQuoteTask } = useGlobalData();
 
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState({
     index: 0,
     correctIndex: 0,
   });
-  const [inputValue, setInputValue] = useState("");
   const [isShowTip, setIsShowTip] = useState(false);
 
   const currentCourse = useMemo(() => {
@@ -48,6 +46,13 @@ export default function Course() {
     );
   }, [currentCourse, currentQuoteIndex]);
 
+  const [inputValue, setInputValue] = useState(() => {
+    if (currentCourse?.quotes[currentQuoteIndex.index].done) {
+      return currentCourse?.quotes[currentQuoteIndex.index].en ?? "";
+    }
+    return "";
+  });
+
   const submit = () => {
     const inputValueArr = inputValue.split(" ");
     const currentQuoteArr = currentQuote.en.split(" ");
@@ -59,6 +64,8 @@ export default function Course() {
     );
 
     if (isCorrect) {
+      doneQuoteTask(name!, currentQuoteIndex.index);
+
       setCurrentQuoteIndex((prev) => ({
         index: prev.index + 1,
         correctIndex: prev.correctIndex + 1,
@@ -77,7 +84,7 @@ export default function Course() {
     const nextIndex = currentQuoteIndex.index - 1;
     if (nextIndex < 0) return;
 
-    if (nextIndex < currentQuoteIndex.correctIndex) {
+    if (currentCourse?.quotes[nextIndex].done) {
       setInputValue(currentCourse?.quotes[nextIndex].en ?? "");
     } else {
       setInputValue("");
@@ -93,7 +100,7 @@ export default function Course() {
     const nextIndex = currentQuoteIndex.index + 1;
     if (nextIndex >= currentCourse!.quotes.length) return;
 
-    if (nextIndex < currentQuoteIndex.correctIndex) {
+    if (currentCourse?.quotes[nextIndex].done) {
       setInputValue(currentCourse?.quotes[nextIndex].en ?? "");
     } else {
       setInputValue("");

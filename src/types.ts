@@ -1,6 +1,7 @@
 export interface Quote {
   zh: string;
   en: string;
+  done?: boolean;
 }
 
 export type Quotes = Quote[];
