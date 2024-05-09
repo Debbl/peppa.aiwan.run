@@ -1,4 +1,4 @@
-import { SVGProps } from "react";
+import type { SVGProps } from "react";
 
 export function MaterialSymbolsHome(props: SVGProps<SVGSVGElement>) {
   return (
@@ -83,7 +83,7 @@ export function MaterialSymbolsChevronLeft(props: SVGProps<SVGSVGElement>) {
 }
 
 export function MaterialSymbolsChevronRightRounded(
-  props: SVGProps<SVGSVGElement>
+  props: SVGProps<SVGSVGElement>,
 ) {
   return (
     <svg

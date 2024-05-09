@@ -13,12 +13,12 @@ export default function Tip(props: {
   return createPortal(
     <div
       onClick={() => handleClick()}
-      className="fixed inset-0 bg-gray-100/50 flex justify-center items-center"
+      className="fixed inset-0 flex items-center justify-center bg-gray-100/50"
     >
-      <div className="border bg-pink-500 p-6 rounded-md">
+      <div className="rounded-md border bg-pink-500 p-6">
         请导入文件夹中的 第*季第*集***-中英台词.xlsx 文件
       </div>
     </div>,
-    document.body
+    document.body,
   );
 }
