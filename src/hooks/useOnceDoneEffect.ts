@@ -7,12 +7,10 @@ const useOnceDoneEffect = (
   const isRun = useRef(false);
 
   useEffect(() => {
-    if (!isRun.current) {
-      effect();
-    }
-
     const isDone = deps?.every((dep) => !!dep);
-    if (isDone) {
+
+    if (isDone && !isRun.current) {
+      effect();
       isRun.current = true;
     }
   }, deps);
