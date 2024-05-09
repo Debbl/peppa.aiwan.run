@@ -13,9 +13,9 @@ import {
   PhEyeClosed,
 } from "~/icons";
 
-// ignore ‘ ’ “ ” , ，' " .
+// ignore ‘ ’ “ ” , ，' " . ? ？
 function formatInputText(word: string) {
-  return word.toLocaleLowerCase().replace(/‘|’|“|”|，|,|'|"|\./g, "");
+  return word.toLocaleLowerCase().replace(/‘|’|“|”|，|,|'|"|\.|\?|？\./g, "");
 }
 
 function isEqualWord(a: string, b: string) {
@@ -32,6 +32,7 @@ export default function Course() {
     correctIndex: 0,
   });
   const [isShowTip, setIsShowTip] = useState(false);
+  const [inputValue, setInputValue] = useState("");
 
   const currentCourse = useMemo(() => {
     return globalData.find((item) => item.title.en === name);
@@ -46,12 +47,12 @@ export default function Course() {
     );
   }, [currentCourse, currentQuoteIndex]);
 
-  const [inputValue, setInputValue] = useState(() => {
+  const initInputValue = useMemo(() => {
     if (currentCourse?.quotes[currentQuoteIndex.index].done) {
       return currentCourse?.quotes[currentQuoteIndex.index].en ?? "";
     }
     return "";
-  });
+  }, [currentCourse, currentQuoteIndex]);
 
   const submit = () => {
     const inputValueArr = inputValue.split(" ");
@@ -159,7 +160,7 @@ export default function Course() {
           <input
             type="text"
             className="border-b-2 text-center text-3xl font-medium outline-none"
-            value={inputValue}
+            value={inputValue || initInputValue}
             onInput={(e) => setInputValue(e.currentTarget.value)}
             onKeyDown={handleInputKeyDown}
           />
