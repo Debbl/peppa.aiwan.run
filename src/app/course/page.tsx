@@ -125,6 +125,9 @@ export default function Course() {
       <header className="mt-12 text-center text-pink-400">
         <div>{title.zh}</div>
         <div>{title.en}</div>
+        <div>
+          {currentQuoteIndex + 1}/{currentCourse.quotes.length}
+        </div>
       </header>
       <main className="mx-20 flex flex-1 items-center justify-center text-center">
         <div className="flex flex-col gap-y-12">
