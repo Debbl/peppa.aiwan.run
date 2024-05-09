@@ -4,11 +4,14 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import type { KeyboardEventHandler } from "react";
 import { useMemo, useState } from "react";
+import { cn } from "twl";
 import { globalDataAtom } from "~/atoms/globalData";
 import {
   MaterialSymbolsChevronLeft,
   MaterialSymbolsChevronRightRounded,
   MaterialSymbolsHome,
+  PhEyeBold,
+  PhEyeClosed,
 } from "~/icons";
 
 // ignore ‘ ’ “ ” , ，' " .
@@ -30,6 +33,7 @@ export default function Course() {
     correctIndex: 0,
   });
   const [inputValue, setInputValue] = useState("");
+  const [isShowTip, setIsShowTip] = useState(false);
 
   const currentCourse = useMemo(() => {
     return globalData.find((item) => item.title.en === name);
@@ -44,9 +48,7 @@ export default function Course() {
     );
   }, [currentCourse, currentQuoteIndex]);
 
-  const handleInputKeyDown: KeyboardEventHandler<HTMLInputElement> = (e) => {
-    if (e.key !== "Enter") return;
-
+  const submit = () => {
     const inputValueArr = inputValue.split(" ");
     const currentQuoteArr = currentQuote.en.split(" ");
 
@@ -62,7 +64,13 @@ export default function Course() {
         correctIndex: prev.correctIndex + 1,
       }));
       setInputValue("");
+      setIsShowTip(false);
     }
+  };
+
+  const handleInputKeyDown: KeyboardEventHandler<HTMLInputElement> = (e) => {
+    if (e.key !== "Enter") return;
+    submit();
   };
 
   const handleMoveLeft = () => {
@@ -120,8 +128,26 @@ export default function Course() {
       </header>
       <main className="mx-20 flex flex-1 items-center justify-center text-center">
         <div className="flex flex-col gap-y-12">
-          <div className="text-2xl font-medium text-pink-800">
-            {currentQuote.zh}
+          <div>
+            <div className="flex items-center justify-center gap-x-2 text-2xl font-medium text-pink-800">
+              <span>{currentQuote.zh}</span>
+              {isShowTip ? (
+                <PhEyeBold
+                  className="cursor-pointer"
+                  onClick={() => setIsShowTip(false)}
+                />
+              ) : (
+                <PhEyeClosed
+                  className="cursor-pointer"
+                  onClick={() => setIsShowTip(true)}
+                />
+              )}
+            </div>
+            <div className="flex items-center justify-center gap-x-2 px-4 text-3xl font-medium text-pink-800">
+              <span className={cn(isShowTip ? "opacity-100" : "opacity-0")}>
+                {currentQuote.en}
+              </span>
+            </div>
           </div>
           <input
             type="text"
