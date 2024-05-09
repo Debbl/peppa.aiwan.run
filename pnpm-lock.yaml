@@ -18,8 +18,8 @@ dependencies:
     specifier: ^18.3.1
     version: 18.3.1(react@18.3.1)
   twl:
-    specifier: 0.0.0-alpha.3
-    version: 0.0.0-alpha.3
+    specifier: 0.0.0-alpha.5
+    version: 0.0.0-alpha.5
   xlsx:
     specifier: ^0.18.5
     version: 0.18.5
@@ -4463,8 +4463,8 @@ packages:
   /tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
 
-  /twl@0.0.0-alpha.3:
-    resolution: {integrity: sha512-AsTs9MCjwZEfurnYh1aSZMs1x/ENrnOSbc8MUmyhwInbJn6px69j8MV4HM2gcSK3t62I+VUC9RAsE5DH8XDO/w==}
+  /twl@0.0.0-alpha.5:
+    resolution: {integrity: sha512-lHb5ijnEx6b8FJUYgejkwdP92U1EeSjFNcklQ2IQkDSY5TT2VJd0bJghObld0QE+42uco/RbBJ8bgKzv001G1Q==}
     dependencies:
       clsx: 2.1.1
       tailwind-merge: 2.3.0

@@ -14,7 +14,8 @@ import {
 } from "~/icons";
 
 // ignore ‘ ’ “ ” , ，' " . ? ？
-function formatInputText(word: string) {
+function formatInputText(word?: string) {
+  if (!word) return "";
   return word.toLocaleLowerCase().replace(/‘|’|“|”|，|,|'|"|\.|\?|？\./g, "");
 }
 
@@ -53,6 +54,8 @@ export default function Course() {
     }
     return "";
   }, [currentCourse, currentQuoteIndex]);
+
+  const inputValueArr = useMemo(() => inputValue.split(" "), [inputValue]);
 
   const submit = () => {
     const inputValueArr = inputValue.split(" ");
@@ -152,8 +155,24 @@ export default function Course() {
               )}
             </div>
             <div className="flex items-center justify-center gap-x-2 px-4 text-3xl font-medium text-pink-800">
-              <span className={cn(isShowTip ? "opacity-100" : "opacity-0")}>
-                {currentQuote.en}
+              <span
+                className={cn(
+                  "inline-flex items-center gap-x-1",
+                  isShowTip ? "opacity-100" : "opacity-0",
+                )}
+              >
+                {currentQuote.en.split(" ").map((word, index) => (
+                  <span
+                    key={index}
+                    className={cn(
+                      isEqualWord(word, inputValueArr[index])
+                        ? "text-pink-400"
+                        : "text-gray-400",
+                    )}
+                  >
+                    {word}
+                  </span>
+                ))}
               </span>
             </div>
           </div>
