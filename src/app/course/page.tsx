@@ -5,6 +5,7 @@ import type { KeyboardEventHandler } from "react";
 import { useMemo, useState } from "react";
 import { cn } from "twl";
 import { useGlobalData } from "~/atoms/hooks/useGlobalData";
+import { useOnceDoneEffect } from "~/hooks/useOnceDoneEffect";
 import {
   MaterialSymbolsChevronLeft,
   MaterialSymbolsChevronRightRounded,
@@ -28,10 +29,7 @@ export default function Course() {
   const name = searchParams.get("name");
   const { globalData, doneQuoteTask } = useGlobalData();
 
-  const [currentQuoteIndex, setCurrentQuoteIndex] = useState({
-    index: 0,
-    correctIndex: 0,
-  });
+  const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
   const [isShowTip, setIsShowTip] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
@@ -41,19 +39,19 @@ export default function Course() {
 
   const currentQuote = useMemo(() => {
     return (
-      currentCourse?.quotes[currentQuoteIndex.index] ?? {
+      currentCourse?.quotes[currentQuoteIndex] ?? {
         en: "not found",
         zh: "not found",
       }
     );
   }, [currentCourse, currentQuoteIndex]);
 
-  const initInputValue = useMemo(() => {
-    if (currentCourse?.quotes[currentQuoteIndex.index].done) {
-      return currentCourse?.quotes[currentQuoteIndex.index].en ?? "";
-    }
-    return "";
-  }, [currentCourse, currentQuoteIndex]);
+  useOnceDoneEffect(() => {
+    const lastDoneIndex =
+      (currentCourse?.quotes.findIndex((item) => !item.done) ?? 1) - 1;
+    setInputValue(currentCourse?.quotes[lastDoneIndex].en ?? "");
+    setCurrentQuoteIndex(lastDoneIndex);
+  }, [currentCourse]);
 
   const inputValueArr = useMemo(() => inputValue.split(" "), [inputValue]);
 
@@ -68,12 +66,9 @@ export default function Course() {
     );
 
     if (isCorrect) {
-      doneQuoteTask(name!, currentQuoteIndex.index);
+      doneQuoteTask(name!, currentQuoteIndex);
 
-      setCurrentQuoteIndex((prev) => ({
-        index: prev.index + 1,
-        correctIndex: prev.correctIndex + 1,
-      }));
+      setCurrentQuoteIndex((prev) => prev + 1);
       setInputValue("");
       setIsShowTip(false);
     }
@@ -85,7 +80,7 @@ export default function Course() {
   };
 
   const handleMoveLeft = () => {
-    const nextIndex = currentQuoteIndex.index - 1;
+    const nextIndex = currentQuoteIndex - 1;
     if (nextIndex < 0) return;
 
     if (currentCourse?.quotes[nextIndex].done) {
@@ -94,14 +89,11 @@ export default function Course() {
       setInputValue("");
     }
 
-    setCurrentQuoteIndex((prev) => ({
-      index: nextIndex,
-      correctIndex: prev.correctIndex,
-    }));
+    setCurrentQuoteIndex(nextIndex);
   };
 
   const handleMoveRight = () => {
-    const nextIndex = currentQuoteIndex.index + 1;
+    const nextIndex = currentQuoteIndex + 1;
     if (nextIndex >= currentCourse!.quotes.length) return;
 
     if (currentCourse?.quotes[nextIndex].done) {
@@ -110,10 +102,7 @@ export default function Course() {
       setInputValue("");
     }
 
-    setCurrentQuoteIndex((prev) => ({
-      index: nextIndex,
-      correctIndex: prev.correctIndex,
-    }));
+    setCurrentQuoteIndex(nextIndex);
   };
 
   if (!currentCourse) {
@@ -179,7 +168,7 @@ export default function Course() {
           <input
             type="text"
             className="border-b-2 text-center text-3xl font-medium outline-none"
-            value={inputValue || initInputValue}
+            value={inputValue}
             onInput={(e) => setInputValue(e.currentTarget.value)}
             onKeyDown={handleInputKeyDown}
           />
