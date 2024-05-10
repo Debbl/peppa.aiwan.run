@@ -153,7 +153,7 @@ export default function Course() {
                   />
                 )}
               </div>
-              <div className="flex items-center justify-center gap-x-2 px-4 text-3xl font-medium text-pink-800">
+              <div className="flex items-center justify-center gap-x-2 px-16 text-3xl font-medium text-pink-800">
                 <span
                   className={cn(
                     "inline-flex items-center gap-x-1",
