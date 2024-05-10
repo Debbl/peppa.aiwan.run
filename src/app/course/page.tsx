@@ -50,7 +50,9 @@ export default function Course() {
 
   useOnceDoneEffect(() => {
     const lastDoneIndex =
-      (currentCourse?.quotes.findIndex((item) => !item.done) ?? 1) - 1;
+      currentCourse?.quotes.findLastIndex((item) => item.done) ?? -1;
+    if (lastDoneIndex === -1) return;
+
     setInputValue(currentCourse?.quotes[lastDoneIndex].en ?? "");
     setCurrentQuoteIndex(lastDoneIndex);
   }, [currentCourse]);
