@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Peppa",
   description: "Learn english with Peppa Pig",
-  icons: ["favicon.ico"],
+  icons: ["favicon.svg"],
 };
 
 export default function RootLayout({
