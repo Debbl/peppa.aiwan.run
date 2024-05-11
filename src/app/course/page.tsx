@@ -1,9 +1,11 @@
 "use client";
+import { Input } from "@nextui-org/react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import type { KeyboardEventHandler } from "react";
 import { useMemo, useState } from "react";
 import { cn } from "twl";
+import { Spinner } from "@nextui-org/spinner";
 import { useGlobalData } from "~/atoms/hooks/useGlobalData";
 import Confetti from "~/components/Confetti";
 import { useOnceDoneEffect } from "~/hooks/useOnceDoneEffect";
@@ -114,9 +116,12 @@ export default function Course() {
 
   if (!currentCourse) {
     return (
-      <div className="flex size-full items-center justify-center">
-        not found
-      </div>
+      <Spinner
+        classNames={{
+          base: "w-screen h-screen",
+        }}
+        label="Loading..."
+      />
     );
   }
 
@@ -177,9 +182,14 @@ export default function Course() {
                 </span>
               </div>
             </div>
-            <input
+            <Input
+              variant="underlined"
               type="text"
-              className="border-b-2 text-center text-3xl font-medium outline-none"
+              classNames={{
+                inputWrapper: "h-12",
+                innerWrapper: "pb-1.5",
+                input: "text-center text-3xl font-medium outline-none",
+              }}
               value={inputValue}
               onInput={(e) => setInputValue(e.currentTarget.value)}
               onKeyDown={handleInputKeyDown}

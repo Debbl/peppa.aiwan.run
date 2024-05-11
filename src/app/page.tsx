@@ -1,12 +1,17 @@
 "use client";
+import { Card, CardHeader } from "@nextui-org/card";
+import { Button } from "@nextui-org/react";
 import { useAtom } from "jotai";
 import Link from "next/link";
 import { type ChangeEventHandler, useState } from "react";
+import { ScrollShadow } from "@nextui-org/scroll-shadow";
 import { globalDataAtom } from "~/atoms/globalData";
+import InputFile from "~/components/InputFile";
 import Tip from "~/components/Tip";
 import {
   MaterialSymbolsDeleteOutline,
   MaterialSymbolsInfo,
+  MaterialSymbolsUploadFile,
   MdiGithub,
 } from "~/icons";
 import { loadSheet } from "~/utils";
@@ -44,7 +49,13 @@ export default function Home() {
       <main className="flex h-screen items-center justify-center">
         <div className="flex flex-col items-center gap-y-4">
           <div className="flex items-center justify-center gap-x-2">
-            <input type="file" accept=".xlsx" onChange={handleInputChange} />
+            <InputFile
+              onChange={handleInputChange}
+              startContent={<MaterialSymbolsUploadFile />}
+            >
+              选择文件
+            </InputFile>
+
             <MaterialSymbolsInfo
               className="size-6 cursor-pointer"
               onClick={() => {
@@ -56,26 +67,33 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="flex flex-1 flex-wrap gap-2">
-            {globalData.map(({ title }, index) => (
-              <Link
-                key={title.en}
-                href={`/course?name=${title.en}`}
-                className="relative inline-block cursor-pointer rounded-md border bg-pink-400 px-6 py-8"
-              >
-                <MaterialSymbolsDeleteOutline
-                  className="absolute right-2 top-2 opacity-0 transition-opacity hover:opacity-100"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    handleDeleteData(index);
-                    return false;
-                  }}
-                />
-                <div>{title.zh}</div>
-                <div>{title.en}</div>
-              </Link>
-            ))}
+          <div className="flex flex-1 justify-center">
+            <ScrollShadow className="flex h-full w-4/5 flex-wrap justify-start gap-x-2 gap-y-4 p-6">
+              {globalData.map(({ title }, index) => (
+                <Link key={title.en} href={`/course?name=${title.en}`}>
+                  <Card isPressable isFooterBlurred className="px-6 py-4">
+                    <CardHeader className="gap-x-6">
+                      <div className="flex flex-col gap-1">
+                        <div>{title.zh}</div>
+                        <div>{title.en}</div>
+                      </div>
+                      <Button
+                        size="sm"
+                        isIconOnly
+                        variant="flat"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          handleDeleteData(index);
+                        }}
+                      >
+                        <MaterialSymbolsDeleteOutline />
+                      </Button>
+                    </CardHeader>
+                  </Card>
+                </Link>
+              ))}
+            </ScrollShadow>
           </div>
         </div>
       </main>

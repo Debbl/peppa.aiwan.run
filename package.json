@@ -21,7 +21,17 @@
     "prepare": "simple-git-hooks"
   },
   "dependencies": {
+    "@nextui-org/button": "^2.0.31",
+    "@nextui-org/card": "^2.0.28",
+    "@nextui-org/divider": "^2.0.27",
+    "@nextui-org/input": "^2.1.21",
+    "@nextui-org/react": "^2.3.6",
+    "@nextui-org/scroll-shadow": "^2.1.16",
+    "@nextui-org/spinner": "^2.0.28",
+    "@nextui-org/system": "^2.1.2",
+    "@nextui-org/theme": "^2.2.3",
     "canvas-confetti": "^1.9.3",
+    "framer-motion": "^11.1.9",
     "jotai": "^2.8.0",
     "next": "^14.2.3",
     "react": "^18.3.1",
