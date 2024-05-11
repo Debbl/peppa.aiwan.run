@@ -47,7 +47,7 @@ export default function Home() {
     <>
       <Tip showTip={showTip} setShowTip={setShowTip} />
       <main className="flex h-screen items-center justify-center">
-        <div className="flex flex-col items-center gap-y-4">
+        <div className="flex w-full flex-col items-center gap-y-4">
           <div className="flex items-center justify-center gap-x-2">
             <InputFile
               onChange={handleInputChange}
@@ -67,7 +67,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="flex flex-1 justify-center">
+          <div className="flex w-full flex-1 justify-center">
             <ScrollShadow className="flex h-full w-4/5 flex-wrap justify-start gap-x-2 gap-y-4 p-6">
               {globalData.map(({ title }, index) => (
                 <Link key={title.en} href={`/course?name=${title.en}`}>
