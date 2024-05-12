@@ -9,10 +9,8 @@ import {
 import { useAtom } from "jotai";
 import Link from "next/link";
 import type { ChangeEventHandler } from "react";
-import { useState } from "react";
 import { globalDataAtom } from "~/atoms/globalData";
 import InputFile from "~/components/InputFile";
-import Tip from "~/components/Tip";
 import {
   MaterialSymbolsDeleteOutline,
   MaterialSymbolsInfo,
@@ -23,7 +21,6 @@ import { loadSheet } from "~/utils";
 
 export default function Home() {
   const [globalData, setGlobalData] = useAtom(globalDataAtom);
-  const [showTip, setShowTip] = useState(false);
 
   const handleInputChange: ChangeEventHandler<HTMLInputElement> = async (e) => {
     const file = e.target.files![0];
@@ -50,7 +47,6 @@ export default function Home() {
 
   return (
     <>
-      <Tip showTip={showTip} setShowTip={setShowTip} />
       <main className="flex h-screen items-center justify-center">
         <div className="flex w-full flex-col items-center gap-y-4">
           <div className="flex items-center justify-center gap-x-2">
@@ -59,6 +55,7 @@ export default function Home() {
               startContent={<MaterialSymbolsUploadFile />}
               endContent={
                 <Tooltip
+                  offset={20}
                   showArrow
                   content="请导入文件夹中的 第*季第*集***-中英台词.xlsx 文件"
                 >
