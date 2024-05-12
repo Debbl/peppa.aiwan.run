@@ -57,6 +57,7 @@ export default function Home() {
                 <Tooltip
                   offset={20}
                   showArrow
+                  onClick={(e) => e.stopPropagation()}
                   content="请导入文件夹中的 第*季第*集***-中英台词.xlsx 文件"
                 >
                   <div>
