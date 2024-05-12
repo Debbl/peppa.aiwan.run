@@ -1,10 +1,15 @@
 "use client";
-import { Card, CardHeader } from "@nextui-org/card";
-import { Button } from "@nextui-org/react";
+import {
+  Button,
+  Card,
+  CardHeader,
+  ScrollShadow,
+  Tooltip,
+} from "@nextui-org/react";
 import { useAtom } from "jotai";
 import Link from "next/link";
-import { type ChangeEventHandler, useState } from "react";
-import { ScrollShadow } from "@nextui-org/scroll-shadow";
+import type { ChangeEventHandler } from "react";
+import { useState } from "react";
 import { globalDataAtom } from "~/atoms/globalData";
 import InputFile from "~/components/InputFile";
 import Tip from "~/components/Tip";
@@ -52,16 +57,20 @@ export default function Home() {
             <InputFile
               onChange={handleInputChange}
               startContent={<MaterialSymbolsUploadFile />}
+              endContent={
+                <Tooltip
+                  showArrow
+                  content="请导入文件夹中的 第*季第*集***-中英台词.xlsx 文件"
+                >
+                  <div>
+                    <MaterialSymbolsInfo className="cursor-pointer" />
+                  </div>
+                </Tooltip>
+              }
             >
               选择文件
             </InputFile>
 
-            <MaterialSymbolsInfo
-              className="size-6 cursor-pointer"
-              onClick={() => {
-                setShowTip((prev) => !prev);
-              }}
-            />
             <Link href="https://github.com/Debbl/peppa.aiwan.run/">
               <MdiGithub className="size-6 cursor-pointer" />
             </Link>
@@ -70,8 +79,14 @@ export default function Home() {
           <div className="flex w-full flex-1 justify-center">
             <ScrollShadow className="flex h-full w-4/5 flex-wrap justify-start gap-x-2 gap-y-4 p-6">
               {globalData.map(({ title }, index) => (
-                <Link key={title.en} href={`/course?name=${title.en}`}>
-                  <Card isPressable isFooterBlurred className="px-6 py-4">
+                <Card
+                  key={title.en}
+                  aria-label="link"
+                  isFooterBlurred
+                  isBlurred
+                  className="px-6 py-4"
+                >
+                  <Link href={`/course?name=${title.en}`}>
                     <CardHeader className="gap-x-6">
                       <div className="flex flex-col gap-1">
                         <div>{title.zh}</div>
@@ -90,8 +105,8 @@ export default function Home() {
                         <MaterialSymbolsDeleteOutline />
                       </Button>
                     </CardHeader>
-                  </Card>
-                </Link>
+                  </Link>
+                </Card>
               ))}
             </ScrollShadow>
           </div>

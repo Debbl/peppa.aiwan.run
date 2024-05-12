@@ -1,5 +1,5 @@
+import { Spinner } from "@nextui-org/react";
 import { Suspense } from "react";
-import { Spinner } from "@nextui-org/spinner";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

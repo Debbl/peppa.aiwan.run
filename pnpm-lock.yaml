@@ -8,33 +8,9 @@ importers:
 
   .:
     dependencies:
-      '@nextui-org/button':
-        specifier: ^2.0.31
-        version: 2.0.31(@nextui-org/system@2.1.2(@nextui-org/theme@2.2.3(tailwindcss@3.4.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwind-variants@0.1.20(tailwindcss@3.4.3)))(@nextui-org/theme@2.2.3(tailwindcss@3.4.3))(framer-motion@11.1.9(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwind-variants@0.1.20(tailwindcss@3.4.3))
-      '@nextui-org/card':
-        specifier: ^2.0.28
-        version: 2.0.28(@nextui-org/system@2.1.2(@nextui-org/theme@2.2.3(tailwindcss@3.4.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwind-variants@0.1.20(tailwindcss@3.4.3)))(@nextui-org/theme@2.2.3(tailwindcss@3.4.3))(framer-motion@11.1.9(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@nextui-org/divider':
-        specifier: ^2.0.27
-        version: 2.0.27(@nextui-org/theme@2.2.3(tailwindcss@3.4.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwind-variants@0.1.20(tailwindcss@3.4.3))
-      '@nextui-org/input':
-        specifier: ^2.1.21
-        version: 2.1.21(@nextui-org/system@2.1.2(@nextui-org/theme@2.2.3(tailwindcss@3.4.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwind-variants@0.1.20(tailwindcss@3.4.3)))(@nextui-org/theme@2.2.3(tailwindcss@3.4.3))(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@nextui-org/react':
         specifier: ^2.3.6
         version: 2.3.6(@types/react@18.3.1)(framer-motion@11.1.9(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwind-variants@0.1.20(tailwindcss@3.4.3))(tailwindcss@3.4.3)
-      '@nextui-org/scroll-shadow':
-        specifier: ^2.1.16
-        version: 2.1.16(@nextui-org/system@2.1.2(@nextui-org/theme@2.2.3(tailwindcss@3.4.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwind-variants@0.1.20(tailwindcss@3.4.3)))(@nextui-org/theme@2.2.3(tailwindcss@3.4.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@nextui-org/spinner':
-        specifier: ^2.0.28
-        version: 2.0.28(@nextui-org/theme@2.2.3(tailwindcss@3.4.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwind-variants@0.1.20(tailwindcss@3.4.3))
-      '@nextui-org/system':
-        specifier: ^2.1.2
-        version: 2.1.2(@nextui-org/theme@2.2.3(tailwindcss@3.4.3))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwind-variants@0.1.20(tailwindcss@3.4.3))
-      '@nextui-org/theme':
-        specifier: ^2.2.3
-        version: 2.2.3(tailwindcss@3.4.3)
       canvas-confetti:
         specifier: ^1.9.3
         version: 1.9.3
@@ -61,8 +37,8 @@ importers:
         version: 0.18.5
     devDependencies:
       '@debbl/eslint-config':
-        specifier: ^3.1.3
-        version: 3.1.5(eslint-plugin-tailwindcss@3.15.1(tailwindcss@3.4.3))(eslint@8.57.0)(typescript@5.4.5)
+        specifier: ^3.1.6
+        version: 3.1.6(eslint-plugin-tailwindcss@3.15.1(tailwindcss@3.4.3))(eslint@8.57.0)(typescript@5.4.5)
       '@types/canvas-confetti':
         specifier: ^1.6.4
         version: 1.6.4
@@ -122,8 +98,8 @@ packages:
     resolution: {integrity: sha512-Nms86NXrsaeU9vbBJKni6gXiEXZ4CVpYVzEjDH9Sb8vmZ3UljyA1GSOJl/6LGPO8EHLuSF9H+IxNXHPX8QHJ4g==}
     engines: {node: '>=6.9.0'}
 
-  '@debbl/eslint-config@3.1.5':
-    resolution: {integrity: sha512-4lTHjAsmbaqk6PT09rKCfOjYKfy3yEneO85yqQDIgwnbJtQCbl8WfHQDYgkZ4JgC+0lXdh+5+EsktjZYFNzrVg==}
+  '@debbl/eslint-config@3.1.6':
+    resolution: {integrity: sha512-uXop7EKHxzBLHwzcxvvLzqvqeu81/lkGGLzju+jeaKDe50dsLy97xsk4v1N559hzepV4Gzpm0SdoznwcJ5xB6A==}
     peerDependencies:
       eslint: '>=8.40.0'
       eslint-plugin-tailwindcss: ^3.15.1
@@ -1791,10 +1767,6 @@ packages:
     hasBin: true
     peerDependencies:
       eslint: '>=7.0.0'
-
-  eslint-define-config@2.1.0:
-    resolution: {integrity: sha512-QUp6pM9pjKEVannNAbSJNeRuYwW3LshejfyBBpjeMGaJjaDUpVps4C6KVR8R7dWZnD3i0synmrE36znjTkJvdQ==}
-    engines: {node: '>=18.0.0', npm: '>=9.0.0', pnpm: '>=8.6.0'}
 
   eslint-import-resolver-node@0.3.9:
     resolution: {integrity: sha512-WFj2isz22JahUv+B788TlO3N6zL3nNJGU8CcZbPZvVEkBPaJdCV4vy5wyghty5ROFbCRnm132v8BScu5/1BQ8g==}
@@ -3684,14 +3656,13 @@ snapshots:
     dependencies:
       regenerator-runtime: 0.14.1
 
-  '@debbl/eslint-config@3.1.5(eslint-plugin-tailwindcss@3.15.1(tailwindcss@3.4.3))(eslint@8.57.0)(typescript@5.4.5)':
+  '@debbl/eslint-config@3.1.6(eslint-plugin-tailwindcss@3.15.1(tailwindcss@3.4.3))(eslint@8.57.0)(typescript@5.4.5)':
     dependencies:
       '@next/eslint-plugin-next': 14.2.3
       '@typescript-eslint/eslint-plugin': 7.8.0(@typescript-eslint/parser@7.8.0(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5)
       '@typescript-eslint/parser': 7.8.0(eslint@8.57.0)(typescript@5.4.5)
       eslint: 8.57.0
       eslint-config-prettier: 9.1.0(eslint@8.57.0)
-      eslint-define-config: 2.1.0
       eslint-mdx: 3.1.5(eslint@8.57.0)
       eslint-plugin-eslint-comments: 3.2.0(eslint@8.57.0)
       eslint-plugin-import-x: 0.5.0(eslint@8.57.0)(typescript@5.4.5)
@@ -6281,8 +6252,6 @@ snapshots:
   eslint-config-prettier@9.1.0(eslint@8.57.0):
     dependencies:
       eslint: 8.57.0
-
-  eslint-define-config@2.1.0: {}
 
   eslint-import-resolver-node@0.3.9:
     dependencies:

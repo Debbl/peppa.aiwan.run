@@ -1,5 +1,5 @@
-import type { ButtonProps } from "@nextui-org/button";
-import { Button } from "@nextui-org/button";
+import type { ButtonProps } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 import type { ChangeEventHandler, MouseEventHandler } from "react";
 import { useRef } from "react";
 

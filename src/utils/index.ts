@@ -35,4 +35,14 @@ async function loadSheet(file: File): Promise<SheetItem | null> {
   }
 }
 
-export { loadSheet };
+// ignore ‘ ’ “ ” , ，' " . ? ？
+function formatInputText(word?: string) {
+  if (!word) return "";
+  return word.toLocaleLowerCase().replace(/‘|’|“|”|，|,|'|"|\.|\?|？\./g, "");
+}
+
+function isEqualWord(a: string, b: string) {
+  return formatInputText(a) === formatInputText(b);
+}
+
+export { loadSheet, formatInputText, isEqualWord };

@@ -1,11 +1,10 @@
 "use client";
-import { Input } from "@nextui-org/react";
+import { Input, Spinner } from "@nextui-org/react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import type { KeyboardEventHandler } from "react";
 import { useMemo, useState } from "react";
 import { cn } from "twl";
-import { Spinner } from "@nextui-org/spinner";
 import { useGlobalData } from "~/atoms/hooks/useGlobalData";
 import Confetti from "~/components/Confetti";
 import { useOnceDoneEffect } from "~/hooks/useOnceDoneEffect";
@@ -16,16 +15,7 @@ import {
   PhEyeBold,
   PhEyeClosed,
 } from "~/icons";
-
-// ignore ‘ ’ “ ” , ，' " . ? ？
-function formatInputText(word?: string) {
-  if (!word) return "";
-  return word.toLocaleLowerCase().replace(/‘|’|“|”|，|,|'|"|\.|\?|？\./g, "");
-}
-
-function isEqualWord(a: string, b: string) {
-  return formatInputText(a) === formatInputText(b);
-}
+import { isEqualWord } from "~/utils";
 
 export default function Course() {
   const searchParams = useSearchParams();
