@@ -21,7 +21,7 @@
     "prepare": "simple-git-hooks"
   },
   "dependencies": {
-    "@nextui-org/react": "^2.3.6",
+    "@nextui-org/react": "0.0.0-canary-20240504162810",
     "canvas-confetti": "^1.9.3",
     "framer-motion": "^11.1.9",
     "jotai": "^2.8.0",

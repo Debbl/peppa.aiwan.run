@@ -78,32 +78,32 @@ export default function Home() {
             <ScrollShadow className="flex h-full w-4/5 flex-wrap justify-start gap-x-2 gap-y-4 p-6">
               {globalData.map(({ title }, index) => (
                 <Card
+                  as={Link}
+                  href={`/course?name=${title.en}`}
                   key={title.en}
                   aria-label="link"
                   isFooterBlurred
                   isBlurred
                   className="px-6 py-4"
                 >
-                  <Link href={`/course?name=${title.en}`}>
-                    <CardHeader className="gap-x-6">
-                      <div className="flex flex-col gap-1">
-                        <div>{title.zh}</div>
-                        <div>{title.en}</div>
-                      </div>
-                      <Button
-                        size="sm"
-                        isIconOnly
-                        variant="flat"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          handleDeleteData(index);
-                        }}
-                      >
-                        <MaterialSymbolsDeleteOutline />
-                      </Button>
-                    </CardHeader>
-                  </Link>
+                  <CardHeader className="gap-x-6">
+                    <div className="flex flex-col gap-1">
+                      <div>{title.zh}</div>
+                      <div>{title.en}</div>
+                    </div>
+                    <Button
+                      size="sm"
+                      isIconOnly
+                      variant="flat"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        handleDeleteData(index);
+                      }}
+                    >
+                      <MaterialSymbolsDeleteOutline />
+                    </Button>
+                  </CardHeader>
                 </Card>
               ))}
             </ScrollShadow>

@@ -1,6 +1,5 @@
 "use client";
-import { Input, Spinner } from "@nextui-org/react";
-import Link from "next/link";
+import { Button, Input, Link, Spinner } from "@nextui-org/react";
 import { useSearchParams } from "next/navigation";
 import type { KeyboardEventHandler } from "react";
 import { useMemo, useState } from "react";
@@ -122,13 +121,12 @@ export default function Course() {
       <Confetti passed={passed} />
       <div className="flex h-full flex-col gap-y-2">
         <nav className="flex justify-end px-4 py-2">
-          <Link href="/">
-            <MaterialSymbolsHome className="text-pink-400" />
-          </Link>
+          <Button as={Link} isIconOnly href="/">
+            <MaterialSymbolsHome />
+          </Button>
         </nav>
         <header className="mt-12 text-center text-pink-400">
           <div>{title.zh}</div>
-          <div>{title.en}</div>
           <div>
             {currentQuoteIndex + 1}/{currentCourse.quotes.length}
           </div>
